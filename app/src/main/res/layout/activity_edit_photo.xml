@@ -34,7 +34,7 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   tools:context="com.aimicor.sunthumbs.EditPhotoActivity">
+                                                   tools:context="com.aimicor.sunthumbs.DetailActivity">
 
   <com.aimicor.sunthumbs.ui.SquareImageView
       android:id="@+id/ivPhoto"
@@ -43,8 +43,7 @@
       android:background="@color/colorPrimary"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:srcCompat="@drawable/ic_profile_placeholder" />
+      app:layout_constraintTop_toTopOf="parent" />
 
   <ProgressBar
           android:id="@+id/progressBar"
@@ -54,50 +53,6 @@
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
-
-  <RadioGroup
-      android:id="@+id/rgFilters"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/ivPhoto">
-
-    <RadioButton
-        android:id="@+id/rbBlur"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:checked="true"
-        android:text="@string/blur"/>
-
-    <RadioButton
-        android:id="@+id/rbVignette"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/vignette"/>
-
-    <RadioButton
-        android:id="@+id/rbContrast"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/contrast"/>
-
-  </RadioGroup>
-
-  <SeekBar
-      android:id="@+id/sbValue"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
-      android:padding="16dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/rgFilters"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

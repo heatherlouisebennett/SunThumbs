@@ -44,7 +44,7 @@ class PhotoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind(photoUrl: String?) {
         Handler().post {
-            val url = if (photoUrl != null) "$photoUrl?w=${itemView.width}" else null //1
+            val url = if (photoUrl != null) "$photoUrl?w=100" else null //1
             Glide.with(itemView)  //2
                     .load(url) //3
                     .centerCrop() //4

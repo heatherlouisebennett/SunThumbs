@@ -52,7 +52,11 @@ class PhotoAdapter(private val list: List<String?>)
     holder.bind(photoUrl)
   }
 
-  fun setItemClickListener(listener: (photoUrl: String?) -> Unit) {
+  interface Listener {
+    fun invoke(photoUrl: String) : Unit
+  }
+
+  fun setItemClickListener(listener: (photoUrl: String?) -> Unit) {//kotlin interface with a single method, takes a string and returns nothing
     recyclerViewItemListener = listener
   }
 

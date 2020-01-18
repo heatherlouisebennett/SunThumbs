@@ -1,7 +1,7 @@
 <resources>
-  <string name="app_name">Wendergram</string>
+  <string name="app_name">Art Photos</string>
 
-  <string name="title_activity_edit_photo">Edit Photo</string>
+  <string name="title_activity_detail">Detail</string>
   <string name="blur">Blur</string>
   <string name="vignette">Vignette</string>
   <string name="contrast">Contrast</string>

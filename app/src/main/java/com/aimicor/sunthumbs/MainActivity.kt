@@ -38,28 +38,25 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.aimicor.sunthumbs.photo.PhotoAdapter
 import com.aimicor.sunthumbs.provider.PhotoProvider
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val photoProvider = PhotoProvider()
-    private var photoAdapter: PhotoAdapter? = null
+    private val photoProvider = PhotoProvider() // cannot overwrite a val
+    private var photoAdapter: PhotoAdapter? = null //? nullable type, var is variable. ie *can* overwrite
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
-        photoAdapter = PhotoAdapter(photoProvider.photos)
-        photoAdapter?.setItemClickListener { it ->
-            startActivity(EditPhotoActivity.newIntent(this@MainActivity, it))
+        photoAdapter = PhotoAdapter(photoProvider.photos) //photo provider is a constructor with a list of url strings (takes in list of photos)
+        photoAdapter?.setItemClickListener { //if photoAdapter is not null (?) then setItemClickListener (callback)
+            startActivity(DetailActivity.newIntent(this@MainActivity, it)) // outputs photos on the screen or view
         }
 
         rvPhotos.layoutManager = GridLayoutManager(this, 3)
         rvPhotos.adapter = photoAdapter
 
-        loadProfilePic("https://source.unsplash.com/random")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,23 +66,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when {
-            item?.itemId == R.id.clear_cache -> {
+            item?.itemId == R.id.clear_cache -> { //super delegates to the parent when you select an item i.e cache from burger menu
                 clearCache()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun loadProfilePic(profilePicUrl: String) {
-        Glide.with(this) //1
-                .load(profilePicUrl)
-                .placeholder(R.drawable.ic_profile_placeholder)
-                .error(R.drawable.ic_profile_placeholder)
-                .skipMemoryCache(true) //2
-                .diskCacheStrategy(DiskCacheStrategy.NONE) //3
-                .transform(CircleCrop()) //4
-                .into(ivProfile)
     }
 
     private fun clearCache() {
