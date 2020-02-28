@@ -30,7 +30,6 @@
 
 package com.aimicor.sunthumbs.photo
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -43,8 +42,7 @@ class PhotoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(
                 R.layout.view_holder_photo, parent, false)) {
 
-    fun bind(photoDetail: PhotoDetail) {
-        Handler().post {
+    fun bind(photoDetail: PhotoDetail) =
             Glide.with(itemView)  //2
                     .load(photoDetail.url) //3
                     .centerCrop() //4
@@ -52,8 +50,4 @@ class PhotoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
                     .error(R.drawable.ic_broken_image) //6
                     .fallback(R.drawable.ic_no_image) //7
                     .into(itemView.ivPhoto) //8
-        }
-
-
-    }
 }
