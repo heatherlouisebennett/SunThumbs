@@ -38,6 +38,7 @@ import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.aimicor.sunthumbs.provider.PhotoDetail
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -65,12 +66,12 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        val photoUrl = intent.getStringExtra(INTENT_PHOTO_URL)
+      //  val photoDetail = intent.getStringExtra(INTENT_PHOTO_URL) //take object and converts into string
+        val photoDetail = intent.getSerializableExtra(INTENT_PHOTO_URL) as PhotoDetail
         Handler().post {
             val width = ivPhoto.width
-            val url = if (photoUrl != null) "$photoUrl?w=600" else null //1
             Glide.with(this)
-                    .load(url)
+                    .load(photoDetail.url)
                     .addListener(listener)
                     .override(width, width) //1
                     .transform(CenterCrop())
@@ -78,6 +79,9 @@ class DetailActivity : AppCompatActivity() {
                     .placeholder(ivPhoto.drawable) //7
                     .into(ivPhoto)
         }
+        photo_description.text = photoDetail.title
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -94,9 +98,9 @@ class DetailActivity : AppCompatActivity() {
 
         private const val INTENT_PHOTO_URL = "INTENT_PHOTO_URL"
 
-        fun newIntent(context: Context, photoUrl: String?): Intent {
+        fun newIntent(context: Context, photoDetail: PhotoDetail?): Intent {
             val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(INTENT_PHOTO_URL, photoUrl)
+            intent.putExtra(INTENT_PHOTO_URL, photoDetail)
             return intent
         }
     }

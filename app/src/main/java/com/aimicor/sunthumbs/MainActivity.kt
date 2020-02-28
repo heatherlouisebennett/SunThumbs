@@ -36,27 +36,41 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.aimicor.sunthumbs.photo.PhotoAdapter
-import com.aimicor.sunthumbs.provider.PhotoProvider
+import com.aimicor.sunthumbs.provider.Api
+import com.aimicor.sunthumbs.provider.PhotoDetail
 import com.bumptech.glide.Glide
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val photoProvider = PhotoProvider() // cannot overwrite a val
     private var photoAdapter: PhotoAdapter? = null //? nullable type, var is variable. ie *can* overwrite
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
-        photoAdapter = PhotoAdapter(photoProvider.photos) //photo provider is a constructor with a list of url strings (takes in list of photos)
-        photoAdapter?.setItemClickListener { //if photoAdapter is not null (?) then setItemClickListener (callback)
+        CompositeDisposable().apply {
+            add(Api.create().getPhotoDetails()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe { photoDetails ->
+                        loadPhotoAdapter(photoDetails)
+                        dispose()
+                    })
+        }
+    }
+
+    private fun loadPhotoAdapter(photoDetails: List<PhotoDetail>) {
+        photoAdapter = PhotoAdapter(photoDetails) //photo provider is a constructor with a list of url strings (takes in list of photos)
+        photoAdapter?.setItemClickListener {
+            //if photoAdapter is not null (?) then setItemClickListener (callback)
             startActivity(DetailActivity.newIntent(this@MainActivity, it)) // outputs photos on the screen or view
         }
-
         rvPhotos.layoutManager = GridLayoutManager(this, 3)
         rvPhotos.adapter = photoAdapter
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

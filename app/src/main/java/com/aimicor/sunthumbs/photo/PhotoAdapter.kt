@@ -33,11 +33,12 @@ package com.aimicor.sunthumbs.photo
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.aimicor.sunthumbs.provider.PhotoDetail
 
-class PhotoAdapter(private val list: List<String?>)
+class PhotoAdapter(private val list: List<PhotoDetail>)
   : RecyclerView.Adapter<PhotoViewHolder>() {
 
-  private var recyclerViewItemListener: ((String?) -> Unit)? = null
+  private var recyclerViewItemListener: ((PhotoDetail?) -> Unit)? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
     val inflater = LayoutInflater.from(parent.context)
@@ -52,11 +53,7 @@ class PhotoAdapter(private val list: List<String?>)
     holder.bind(photoUrl)
   }
 
-  interface Listener {
-    fun invoke(photoUrl: String) : Unit
-  }
-
-  fun setItemClickListener(listener: (photoUrl: String?) -> Unit) {//kotlin interface with a single method, takes a string and returns nothing
+  fun setItemClickListener(listener: (PhotoDetail?) -> Unit) {//kotlin interface with a single method, takes a string and returns nothing
     recyclerViewItemListener = listener
   }
 

@@ -35,6 +35,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aimicor.sunthumbs.R
+import com.aimicor.sunthumbs.provider.PhotoDetail
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_edit_photo.view.*
 
@@ -42,11 +43,10 @@ class PhotoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(
                 R.layout.view_holder_photo, parent, false)) {
 
-    fun bind(photoUrl: String?) {
+    fun bind(photoDetail: PhotoDetail) {
         Handler().post {
-            val url = if (photoUrl != null) "$photoUrl?w=100" else null //1
             Glide.with(itemView)  //2
-                    .load(url) //3
+                    .load(photoDetail.url) //3
                     .centerCrop() //4
                     .placeholder(R.drawable.ic_image_place_holder) //5
                     .error(R.drawable.ic_broken_image) //6
