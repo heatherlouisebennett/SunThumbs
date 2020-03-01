@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             //if photoAdapter is not null (?) then setItemClickListener (callback)
             startActivity(DetailActivity.newIntent(this@MainActivity, it)) // outputs photos on the screen or view
         }
-        rvPhotos.layoutManager = GridLayoutManager(this, 3)
+        rvPhotos.layoutManager = GridLayoutManager(this, 2)
         rvPhotos.adapter = photoAdapter
     }
 
