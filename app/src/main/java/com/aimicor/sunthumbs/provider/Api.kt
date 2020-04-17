@@ -27,5 +27,7 @@ data class PhotoDetail(
     @SerializedName("title")
     val title: String,
     @SerializedName("url")
-    val url: String
+    val url: String,
+    @SerializedName ("youtube")
+    val youtube: String
 ): Serializable

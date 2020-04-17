@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.aimicor.sunthumbs">
-
-<!--    hardware permissions go here e.g bluetooth, internet etc -->
+    <!--    hardware permissions go here e.g bluetooth, internet etc -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-<!--    information about the applcation-->
+<!--    information about the application-->
     <application
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
@@ -24,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Edit Photo Activity -->
+        <!-- Detail Activity -->
         <activity
                 android:name=".DetailActivity"
                 android:label="@string/title_activity_detail" />

@@ -42,7 +42,7 @@ import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.* //classes that may or may not be in libraries. They are not immediately available currnently within the app.
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
         CompositeDisposable().apply {
-            add(Api.create().getPhotoDetails()
+            add(Api.create().getPhotoDetails() //RX callback foreground and background specification
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { photoDetails ->
@@ -61,6 +61,17 @@ class MainActivity : AppCompatActivity() {
                         dispose()
                     })
         }
+
+        val disposable = Api.create().getPhotoDetails() //RX callback foreground and background specification
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { photoDetails ->
+                    loadPhotoAdapter(photoDetails)
+                }
+
+        val compositeDisposable = CompositeDisposable()
+        compositeDisposable.add(disposable)
+        compositeDisposable.dispose()
     }
 
     private fun loadPhotoAdapter(photoDetails: List<PhotoDetail>) {
