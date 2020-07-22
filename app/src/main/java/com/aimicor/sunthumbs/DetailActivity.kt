@@ -30,9 +30,11 @@
 
 package com.aimicor.sunthumbs
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
@@ -47,6 +49,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.activity_edit_photo.*
+
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +83,8 @@ class DetailActivity : AppCompatActivity() {
                     .into(ivPhoto)
         }
         photo_description.text = photoDetail.title
+        photo_description.setOnClickListener {watchYoutubeVideo(photoDetail.youtube)  }
+
 
 
     }
@@ -93,6 +98,16 @@ class DetailActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun watchYoutubeVideo(id: String) =
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("vnd.youtube:$id")))
+        } catch (ex: ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v=$id")))
+        }
+
 
     companion object {
 
