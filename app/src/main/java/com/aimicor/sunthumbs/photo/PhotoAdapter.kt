@@ -46,11 +46,11 @@ class PhotoAdapter(private val list: List<PhotoDetail>)
   }
 
   override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-    val photoUrl = list[position]
+    val photoDetail = list[position]
     holder.itemView.setOnClickListener {
-      recyclerViewItemListener?.invoke(photoUrl)
+      recyclerViewItemListener?.invoke(photoDetail)
     }
-    holder.bind(photoUrl)
+    holder.bind(photoDetail)
   }
 
   fun setItemClickListener(listener: (PhotoDetail?) -> Unit) {//kotlin interface with a single method, takes a string and returns nothing

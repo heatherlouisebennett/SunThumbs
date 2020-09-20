@@ -52,26 +52,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
+        swipeRefresh.setOnRefreshListener(::getPhotoDetails)
+        getPhotoDetails()
+    }
+
+    private fun getPhotoDetails() {
         CompositeDisposable().apply {
             add(Api.create().getPhotoDetails() //RX callback foreground and background specification
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe { photoDetails ->
-                        loadPhotoAdapter(photoDetails)
-                        dispose()
-                    })
-        }
-
-        val disposable = Api.create().getPhotoDetails() //RX callback foreground and background specification
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { photoDetails ->
                     loadPhotoAdapter(photoDetails)
-                }
-
-        val compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(disposable)
-        compositeDisposable.dispose()
+                    dispose()
+                })
+        }
     }
 
     private fun loadPhotoAdapter(photoDetails: List<PhotoDetail>) {
@@ -82,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
         rvPhotos.layoutManager = GridLayoutManager(this, 2)
         rvPhotos.adapter = photoAdapter
+        swipeRefresh.isRefreshing=false
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
