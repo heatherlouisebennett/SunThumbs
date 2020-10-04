@@ -32,21 +32,23 @@ package com.aimicor.sunthumbs.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 
 
-class SquareImageView : ImageView {
+class SquareImageView : AppCompatImageView {
 
-  constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context)
 
-  constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-  constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
-      defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
+        defStyleAttr)
 
-  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    // Set a square layout.
-    super.onMeasure(widthMeasureSpec, widthMeasureSpec)
-  }
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Set a square layout.
+        if (MeasureSpec.getSize(widthMeasureSpec) > MeasureSpec.getSize(heightMeasureSpec))
+            super.onMeasure(heightMeasureSpec, heightMeasureSpec)
+        else super.onMeasure(widthMeasureSpec, widthMeasureSpec)
+    }
 
 }

@@ -5,3 +5,6 @@ local.properties
 .idea/
 .DS_Store
 /*.png
+app/release/
+private_key.pepk
+keystore.jks

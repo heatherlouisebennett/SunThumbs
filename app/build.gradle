@@ -5,7 +5,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion //shows you and used the correct SDKversion. latest version is Pie or 29?
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\Heather\\AndroidStudioProjects\\SunThumbs\\keystore.jks')
+            storePassword 'Aimi1234'
+            keyAlias = 'aimi'
+            keyPassword 'Aimi1234'
+        }
+    }
+    compileSdkVersion rootProject.ext.compileSdkVersion //shows you and used the correct SDKversion. latest version is Pie or 29?
 
   defaultConfig {
     applicationId "com.aimicor.sunthumbs"

@@ -42,7 +42,7 @@ import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.* //classes that may or may not be in libraries. They are not immediately available currnently within the app.
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             //if photoAdapter is not null (?) then setItemClickListener (callback)
             startActivity(DetailActivity.newIntent(this@MainActivity, it)) // outputs photos on the screen or view
         }
-        rvPhotos.layoutManager = GridLayoutManager(this, 2)
+        rvPhotos.layoutManager = GridLayoutManager(this, resources.getInteger(R.integer.span_count))
         rvPhotos.adapter = photoAdapter
         swipeRefresh.isRefreshing=false
     }

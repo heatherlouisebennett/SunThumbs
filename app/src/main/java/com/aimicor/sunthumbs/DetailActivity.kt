@@ -45,7 +45,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.activity_edit_photo.*
@@ -69,22 +68,19 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-      //  val photoDetail = intent.getStringExtra(INTENT_PHOTO_URL) //take object and converts into string
+        //  val photoDetail = intent.getStringExtra(INTENT_PHOTO_URL) //take object and converts into string
         val photoDetail = intent.getSerializableExtra(INTENT_PHOTO_URL) as PhotoDetail
         Handler().post {
-            val width = ivPhoto.width
             Glide.with(this)
-                    .load(photoDetail.url)
-                    .addListener(listener)
-                    .override(width, width) //1
-                    .transform(CenterCrop())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA) //6
-                    .placeholder(ivPhoto.drawable) //7
-                    .into(ivPhoto)
+                .load(photoDetail.url)
+                .addListener(listener)
+                .centerCrop() //4
+                .diskCacheStrategy(DiskCacheStrategy.DATA) //6
+                .placeholder(ivPhoto.drawable) //7
+                .into(ivPhoto)
         }
         photo_description.text = photoDetail.title
-        photo_description.setOnClickListener {watchYoutubeVideo(photoDetail.youtube)  }
-
+        photo_description.setOnClickListener { watchYoutubeVideo(photoDetail.youtube) }
 
 
     }
@@ -102,10 +98,10 @@ class DetailActivity : AppCompatActivity() {
     private fun watchYoutubeVideo(id: String) =
         try {
             startActivity(Intent(Intent.ACTION_VIEW,
-                    Uri.parse("vnd.youtube:$id")))
+                Uri.parse("vnd.youtube:$id")))
         } catch (ex: ActivityNotFoundException) {
             startActivity(Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://www.youtube.com/watch?v=$id")))
+                Uri.parse("http://www.youtube.com/watch?v=$id")))
         }
 
 

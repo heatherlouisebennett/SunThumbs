@@ -38,31 +38,31 @@
 
   <com.aimicor.sunthumbs.ui.SquareImageView
       android:id="@+id/ivPhoto"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
       android:background="@color/colorPrimary"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <ProgressBar
-          android:id="@+id/progressBar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          app:layout_constraintBottom_toBottomOf="@id/ivPhoto"
-          app:layout_constraintLeft_toLeftOf="@id/ivPhoto"
-          app:layout_constraintRight_toRightOf="@id/ivPhoto"
-          app:layout_constraintTop_toTopOf="@id/ivPhoto" />
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="@id/ivPhoto"
+      app:layout_constraintEnd_toStartOf="@+id/ivPhoto"
+      app:layout_constraintStart_toStartOf="@id/ivPhoto"
+      app:layout_constraintTop_toTopOf="@id/ivPhoto" />
 
   <TextView
-          android:id="@+id/photo_description"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textStyle="bold"
-          android:textAppearance="@style/TextAppearance.AppCompat.Large"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/ivPhoto" />
+      android:id="@+id/photo_description"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/ivPhoto"
+      app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
