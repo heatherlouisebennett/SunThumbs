@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.aimicor.sunthumbs">
+        package="com.aimicor.sunthumb">
     <!--    hardware permissions go here e.g bluetooth, internet etc -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme">
 
         <!-- Main Activity -->
-        <activity android:name=".MainActivity">
+        <activity android:name="com.aimicor.sunthumb.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -24,7 +24,7 @@
 
         <!-- Detail Activity -->
         <activity
-                android:name=".DetailActivity"
+                android:name="com.aimicor.sunthumb.DetailActivity"
                 android:label="@string/title_activity_detail" />
     </application>
 

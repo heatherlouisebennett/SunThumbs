@@ -1,4 +1,4 @@
-package com.aimicor.sunthumbs.provider
+package com.aimicor.sunthumb.provider
 
 import com.google.gson.annotations.SerializedName
 import io.reactivex.Single

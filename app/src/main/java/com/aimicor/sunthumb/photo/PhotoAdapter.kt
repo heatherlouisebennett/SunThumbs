@@ -28,12 +28,12 @@
  * THE SOFTWARE.
  */
 
-package com.aimicor.sunthumbs.photo
+package com.aimicor.sunthumb.photo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aimicor.sunthumbs.provider.PhotoDetail
+import com.aimicor.sunthumb.provider.PhotoDetail
 
 class PhotoAdapter(private val list: List<PhotoDetail>)
   : RecyclerView.Adapter<PhotoViewHolder>() {

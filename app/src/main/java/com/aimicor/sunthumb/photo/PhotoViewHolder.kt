@@ -28,27 +28,26 @@
  * THE SOFTWARE.
  */
 
-package com.aimicor.sunthumbs.ui
+package com.aimicor.sunthumb.photo
 
-import android.content.Context
-import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatImageView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.aimicor.sunthumb.R
+import com.aimicor.sunthumb.provider.PhotoDetail
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_edit_photo.view.*
 
+class PhotoViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
+        RecyclerView.ViewHolder(inflater.inflate(
+                R.layout.view_holder_photo, parent, false)) {
 
-class SquareImageView : AppCompatImageView {
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
-        defStyleAttr)
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        // Set a square layout.
-        if (MeasureSpec.getSize(widthMeasureSpec) > MeasureSpec.getSize(heightMeasureSpec))
-            super.onMeasure(heightMeasureSpec, heightMeasureSpec)
-        else super.onMeasure(widthMeasureSpec, widthMeasureSpec)
-    }
-
+    fun bind(photoDetail: PhotoDetail) =
+            Glide.with(itemView)  //2
+                    .load(photoDetail.url) //3
+                    .centerCrop() //4
+                    .placeholder(R.drawable.ic_image_place_holder) //5
+                    .error(R.drawable.ic_broken_image) //6
+                    .fallback(R.drawable.ic_no_image) //7
+                    .into(itemView.ivPhoto) //8
 }

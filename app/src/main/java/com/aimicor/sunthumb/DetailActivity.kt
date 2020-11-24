@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.aimicor.sunthumbs
+package com.aimicor.sunthumb
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -40,7 +40,7 @@ import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.aimicor.sunthumbs.provider.PhotoDetail
+import com.aimicor.sunthumb.provider.PhotoDetail
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy

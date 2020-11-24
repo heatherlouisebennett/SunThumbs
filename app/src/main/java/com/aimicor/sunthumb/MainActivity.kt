@@ -28,16 +28,16 @@
  * THE SOFTWARE.
  */
 
-package com.aimicor.sunthumbs
+package com.aimicor.sunthumb
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.aimicor.sunthumbs.photo.PhotoAdapter
-import com.aimicor.sunthumbs.provider.Api
-import com.aimicor.sunthumbs.provider.PhotoDetail
+import com.aimicor.sunthumb.photo.PhotoAdapter
+import com.aimicor.sunthumb.provider.Api
+import com.aimicor.sunthumb.provider.PhotoDetail
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

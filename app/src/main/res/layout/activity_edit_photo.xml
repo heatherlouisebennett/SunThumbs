@@ -34,9 +34,9 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   tools:context="com.aimicor.sunthumbs.DetailActivity">
+                                                   tools:context="com.aimicor.sunthumb.DetailActivity">
 
-  <com.aimicor.sunthumbs.ui.SquareImageView
+  <com.aimicor.sunthumb.ui.SquareImageView
       android:id="@+id/ivPhoto"
       android:layout_width="match_parent"
       android:layout_height="0dp"
