@@ -5,52 +5,48 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    signingConfigs {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    //shows you and used the correct SDKversion. latest version is Pie or 29?
+
+    defaultConfig {
+        applicationId "com.aimicor.sunthumbs"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
         release {
-            storeFile file('C:\\Users\\Heather\\AndroidStudioProjects\\SunThumbs\\keystore.jks')
-            storePassword 'Aimi1234'
-            keyAlias = 'aimi'
-            keyPassword 'Aimi1234'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileSdkVersion rootProject.ext.compileSdkVersion //shows you and used the correct SDKversion. latest version is Pie or 29?
-
-  defaultConfig {
-    applicationId "com.aimicor.sunthumbs"
-    minSdkVersion rootProject.ext.minSdkVersion
-    targetSdkVersion rootProject.ext.targetSdkVersion
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-  // Kotlin
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version" //version of Kotlin being used in the app.
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //version of Kotlin being used in the app.
 
-  // Support Libraries
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-  implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-  //  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-  //  implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-  implementation "androidx.recyclerview:recyclerview:1.1.0" //Without the libraries the app wont compile. Libraries are called when the application needs specific information that it doe not already contain.
+    // Support Libraries
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    //  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //  implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    //Without the libraries the app wont compile. Libraries are called when the application needs specific information that it doe not already contain.
 
-  // TUTORIAL DEPENDENCIES HERE
-  implementation 'com.github.bumptech.glide:glide:4.9.0'
-  implementation "io.reactivex.rxjava2:rxjava:2.2.5"
-  implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
-  implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-  implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-  implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'//If you use Reactive X (event by system)or Glide (loading images) then you need to include depedencies for these elements. It wont compile without them.
+    // TUTORIAL DEPENDENCIES HERE
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.5"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+//If you use Reactive X (event by system)or Glide (loading images) then you need to include depedencies for these elements. It wont compile without them.
 }
