@@ -35,6 +35,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aimicor.sunthumb.photo.PhotoAdapter
 import com.aimicor.sunthumb.provider.Api
 import com.aimicor.sunthumb.provider.PhotoDetail
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when {
             item?.itemId == R.id.clear_cache -> { //super delegates to the parent when you select an item i.e cache from burger menu
                 clearCache()

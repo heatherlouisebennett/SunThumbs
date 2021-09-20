@@ -5,20 +5,29 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\Heather\\AndroidStudioProjects\\aimicor.jks')
+            keyAlias 'aimicor'
+            storePassword '1eopard!'
+            keyPassword '1eopard!'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     //shows you and used the correct SDKversion. latest version is Pie or 29?
 
     defaultConfig {
-        applicationId "com.aimicor.sunthumbs"
+        applicationId "com.aimicor.sunthumb"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.0.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
