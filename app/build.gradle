@@ -5,6 +5,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     signingConfigs {
         release {
             storeFile file('C:\\Users\\Heather\\AndroidStudioProjects\\aimicor.jks')
@@ -43,6 +50,7 @@ dependencies {
 
     // Support Libraries
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     //  implementation 'androidx.legacy:legacy-support-v4:1.0.0'

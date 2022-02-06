@@ -33,7 +33,9 @@ package com.aimicor.sunthumb
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aimicor.sunthumb.photo.PhotoAdapter
@@ -53,20 +55,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
-        swipeRefresh.setOnRefreshListener(::getPhotoDetails)
-        getPhotoDetails()
-    }
-
-    private fun getPhotoDetails() {
-        CompositeDisposable().apply {
-            add(Api.create().getPhotoDetails() //RX callback foreground and background specification
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { photoDetails ->
-                    loadPhotoAdapter(photoDetails)
-                    dispose()
-                })
+        val model: MainViewModel by viewModels()
+//        swipeRefresh.setOnRefreshListener(::getPhotoDetails)
+        model.getPhotoDetails().observe(this) { photoDetails ->
+            loadPhotoAdapter(photoDetails)
         }
+
     }
 
     private fun loadPhotoAdapter(photoDetails: List<PhotoDetail>) {
@@ -80,14 +74,14 @@ class MainActivity : AppCompatActivity() {
         swipeRefresh.isRefreshing=false
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when {
-            item?.itemId == R.id.clear_cache -> { //super delegates to the parent when you select an item i.e cache from burger menu
+            item.itemId == R.id.clear_cache -> { //super delegates to the parent when you select an item i.e cache from burger menu
                 clearCache()
                 true
             }
