@@ -35,16 +35,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.aimicor.sunthumb.photo.PhotoAdapter
-import com.aimicor.sunthumb.provider.Api
 import com.aimicor.sunthumb.provider.PhotoDetail
 import com.bumptech.glide.Glide
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) //xml layout meta data - inflating xml graphics
 
         val model: MainViewModel by viewModels()
-//        swipeRefresh.setOnRefreshListener(::getPhotoDetails)
+        swipeRefresh.setOnRefreshListener(model::loadPhotoDetails)
         model.getPhotoDetails().observe(this) { photoDetails ->
             loadPhotoAdapter(photoDetails)
         }

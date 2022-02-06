@@ -21,7 +21,7 @@ class MainViewModel : ViewModel() {
         return photoDetails
     }
 
-    private fun loadPhotoDetails() {
+   fun loadPhotoDetails() {
         CompositeDisposable().apply {
             add(
                 Api.create().getPhotoDetails() //RX callback foreground and background specification
